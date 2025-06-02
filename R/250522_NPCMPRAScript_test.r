@@ -138,3 +138,10 @@ plot_groups(mpralm_fit_elem, 0.975, neg_label="control", test_label="tested")
 treat <- mpra_treat(mpralm_fit_elem, 0.975, neg_label="control")
 result <- topTreat(treat, coef = 1, number = Inf)
 head(result)
+
+#attempted to do a plot 
+ggplot(result, aes(x = logFC, y = -log10(P.Value))) +
+  geom_point(aes(color = P.Value < 0.05), alpha = 0.6) +
+  scale_color_manual(values = c("gray", "red")) +
+  labs(title = "Volcano Plot", x = "Log Fold Change (logFC)", y = "-log10(P-value)") +
+  theme_minimal()
